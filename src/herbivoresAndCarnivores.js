@@ -9,15 +9,8 @@ class Animal {
     Animal.alive.push(this);
   }
 
-  // Перевіряємо, чи жива тварина
   checkAlive() {
-    if (this.health <= 0) {
-      const index = Animal.alive.indexOf(this);
-
-      if (index !== -1) {
-        Animal.alive.splice(index, 1);
-      }
-    }
+    Animal.alive = Animal.alive.filter(a => a.health > 0);
   }
 }
 
@@ -36,7 +29,7 @@ class Carnivore extends Animal {
   bite(target) {
     if (target instanceof Herbivore && !target.hidden) {
       target.health -= 50;
-      target.checkAlive();
+      target.checkAlive(); 
     }
   }
 }
